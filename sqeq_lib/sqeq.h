@@ -13,7 +13,7 @@ struct SqeqParam {
 };
 
 // one square equation:
-class SquareEquation {
+class SquareEquationSolution {
 public:
     SqeqParam coeffs;
     int x1;

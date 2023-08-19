@@ -7,11 +7,12 @@ int main(int argc, char * argv[]) {
         std::vector<SqeqParam> prms = validateParameters(argc, argv);
         std::cout << std::endl;
         for (SqeqParam p : prms) {
+            auto solved = SquareEquationSolution();
             p.print();
         }
     }
     catch (const std::invalid_argument& e) {
-        std::cerr << "One or more coeffs are non-integer (ERROR: '" << e.what() << "')" << std::endl;
+        std::cerr << "Error occurred: '" << e.what() << "'" << std::endl;
     }
 
 

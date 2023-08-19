@@ -3,7 +3,7 @@
 #include <cstdlib>
 
 
-void SquareEquation::solve() {
+void SquareEquationSolution::solve() {
     double discr = coeffs.b * coeffs.b - 4 * coeffs.a * coeffs.c;
     if (discr > 0) {
         solution = true;
@@ -18,7 +18,7 @@ void SquareEquation::solve() {
     }
 }
 
-void SquareEquation::print() const {
+void SquareEquationSolution::print() const {
     if (solution) {
         if (x1 != x2) {
             std::cout << "(" << x1 << ", " << x2 << ")";
@@ -38,6 +38,7 @@ void SqeqParam::print() const {
 std::vector<int> transformParams(int argc, char * argv[]) {
     std::vector<int> result;
     for (int i = 1; i < argc; i++) {
+        // TODO: wrap in try-catch, in catch throw exception with specified message for non-int input
         result.push_back(std::stoi(argv[i]));
     }
 
