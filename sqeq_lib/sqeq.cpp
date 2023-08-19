@@ -38,8 +38,7 @@ void SqeqParam::print() const {
 std::vector<int> transformParams(int argc, char * argv[]) {
     std::vector<int> result;
     for (int i = 1; i < argc; i++) {
-    // TODO: Exceptions - garbage input
-        result.push_back(static_cast<int>(std::strtol(argv[i], nullptr, 10)));
+        result.push_back(std::stoi(argv[i]));
     }
 
     if ((argc - 1) % 3 != 0) {
