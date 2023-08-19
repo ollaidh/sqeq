@@ -24,4 +24,5 @@ public:
     void print() const;
 };
 
+std::vector<int> transformParams(int argc, char * argv[]);
 std::vector<SqeqParam> validateParameters(int argc, char * argv[]);

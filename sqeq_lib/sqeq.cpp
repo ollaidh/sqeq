@@ -34,28 +34,35 @@ void SqeqParam::print() const {
     std::cout << "(" << a << " " << b << " " << c << ")";
 }
 
+// add zeroes to the end of parameters pack, as we assume that missing coeffs at the end equal zeroes:
+std::vector<int> transformParams(int argc, char * argv[]) {
+    std::vector<int> result;
+    for (int i = 1; i < argc; i++) {
+    // TODO: Exceptions - garbage input
+        result.push_back(static_cast<int>(std::strtol(argv[i], nullptr, 10)));
+    }
+
+    if ((argc - 1) % 3 != 0) {
+        int expected_coeff_number = 3 * ((argc - 1) / 3 + 1);
+        int real_coeff_number = argc - 1;
+        for (int i = 0; i < (expected_coeff_number - real_coeff_number); i++) {
+            result.push_back(0);
+        }
+    }
+    return result;
+}
+
 std::vector<SqeqParam> validateParameters(int argc, char * argv[]) {
-    // check if number of input parameters is a multiple of 3
-    // TODO: Exceptions
-//    if ((argc - 1) % 3 != 0) {
-//        raise Exception("Wrong number of input parameters")
-//    }
-
-//    for (int i = 1; i < argc; i++) {
-//        std::cout << argv[i] << std::endl;
-//    }
-    // number of equations based on passed arguments:
-    int equations_number = static_cast<int>((argc - 1) / 3);
-
     std::vector<SqeqParam> result;
-    result.reserve(equations_number);
 
-    int i = 1;
+    const std::vector<int> coeffs = transformParams(argc, argv);
+
+    int i = 0;
     while (i < argc) {
         SqeqParam params{
-                static_cast<double>(std::strtol(argv[i], nullptr, 10)),
-                static_cast<double>(std::strtol(argv[i + 1], nullptr, 10)),
-                static_cast<double>(std::strtol(argv[i + 2], nullptr, 10))
+                static_cast<double>(coeffs[i]),
+                static_cast<double>(coeffs[i + 1]),
+                static_cast<double>(coeffs[i + 2])
         };
         result.push_back(params);
         i += 3;
