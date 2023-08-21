@@ -5,3 +5,4 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_subdirectory(sqeq_app)
 add_subdirectory(sqeq_lib)
+add_subdirectory(sqeq_tests)
