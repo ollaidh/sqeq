@@ -3,25 +3,25 @@
 
 TEST(Utils, transformParameters) {
     // number of input coeffs is not a multiple of 3, assuming that missing coeffs are zeros in the end of the pack
-    char *input[] = {"5", "1", "12", "3", "24"};
+    char *input[] = {"path/to/app", "1", "12", "3", "24"};
     std::vector<int> expected = {1, 12, 3, 24, 0, 0};
     ASSERT_EQ(expected, transformParams(5, input));
 }
 
 TEST(Utils, transformParametersErrNumber) {
     // no coefficients provided
-    char *input[] = {"1"};
+    char *input[] = {"path/to/app"};
     ASSERT_THROW(transformParams(1, input), std::invalid_argument);
 }
 
 TEST(Utils, transformParametersErrType) {
     // one or more provided coefficients can't be converted to int
-    char *input[] = {"4", "1", "aaa", "3"};
+    char *input[] = {"path/to/app", "1", "aaa", "3"};
     ASSERT_THROW(transformParams(1, input), std::invalid_argument);
 }
 
 TEST(Utils, collecttParams) {
-    char *input[] = {"10", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    char *input[] = {"path/to/app", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
     std::vector<SqeqParam> expected = {
             {1, 2, 3},
             {4, 5, 6},
