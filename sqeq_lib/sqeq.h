@@ -42,5 +42,5 @@ private:
     double m_yExtr;
 };
 
-std::vector<int> transformParams(int argc, char * argv[]);
-std::vector<QueqParam> collectParameters(int argc, char * argv[]);
+std::vector<int> transformParams(int argc, char * argv[], int pack_length);
+std::vector<QueqParam> collectParameters(int argc, char * argv[], int pack_length);

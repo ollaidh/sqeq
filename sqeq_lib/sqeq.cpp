@@ -11,23 +11,37 @@ void QueqParam::print(std::ostream& stream) const {
 
 // Transform initial coefficients from command line arguments to int vector.
 // Also adding zeroes to the end of parameters pack, as we assume that missing coeffs at the end equal zeroes:
-std::vector<int> transformParams(int argc, char * argv[]) {
+std::vector<int> transformParams(int argc, char * argv[], int pack_length) {
     if (argc < 2) {
         throw std::invalid_argument("Wrong input: No coefficients were provided!");
     }
     std::vector<int> result;
-    for (int i = 1; i < argc; i++) {
+
+    int i = 1;
+    while (i < argc) {
+        std::vector<int> coeff_pack;
+        bool pack_ok = true;
         try {
-            result.push_back(std::stoi(argv[i]));
+            for (int j = i; j < std::min((i + pack_length), argc); j++) {
+                    coeff_pack.push_back(std::stoi(argv[j]));
+            }
         } catch (const std::invalid_argument&) {
-            throw std::invalid_argument("Wrong input: One or more coefficients are not INT!");
+            pack_ok = false;
+//          throw std::invalid_argument("Wrong input: One or more coefficients are not INT!");
+            std::cout << " Invalid parameter, skipping pack! ";
         }
+        if (pack_ok) {
+            for (int c : coeff_pack) {
+                result.push_back(c);
+            }
+        }
+        i += pack_length;
     }
 
-    if ((argc - 1) % 3 != 0) {
-        int expected_coeff_number = 3 * ((argc - 1) / 3 + 1);
-        int real_coeff_number = argc - 1;
-        for (int i = 0; i < (expected_coeff_number - real_coeff_number); i++) {
+    int real_coeff_number = int(result.size());
+    if (real_coeff_number % 3 != 0) {
+        int expected_coeff_number = 3 * (real_coeff_number / 3 + 1);
+        for (int k = 0; k < (expected_coeff_number - real_coeff_number); k++) {
             result.push_back(0);
         }
     }
@@ -35,13 +49,13 @@ std::vector<int> transformParams(int argc, char * argv[]) {
 }
 
 // Organizing equations coeffs into SqeqParam structure for each equation:
-std::vector<QueqParam> collectParameters(int argc, char * argv[]) {
+std::vector<QueqParam> collectParameters(int argc, char * argv[], int pack_length) {
     std::vector<QueqParam> result;
 
-    const std::vector<int> coeffs = transformParams(argc, argv);
+    const std::vector<int> coeffs = transformParams(argc, argv, pack_length);
 
     int i = 0;
-    while (i < argc - 1) {
+    while (i < coeffs.size()) {
         QueqParam params{
                 (coeffs[i]),
                 (coeffs[i + 1]),

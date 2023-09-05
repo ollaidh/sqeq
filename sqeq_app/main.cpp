@@ -4,7 +4,8 @@
 
 int main(int argc, char * argv[]) {
     try {
-        std::vector<QueqParam> prms = collectParameters(argc, argv);
+        std::vector<QueqParam> prms = collectParameters(argc, argv, 3);
+
         for (QueqParam p : prms) {
             QuadraticEquation equation(p);
             equation.solve();
@@ -19,7 +20,9 @@ int main(int argc, char * argv[]) {
     }
     catch (const std::exception& e) {
         std::cerr << "Error occurred: '" << e.what() << "'" << std::endl;
+        std::cout << "Feeeeeee!!";
     }
 
     return 0;
 }
+
