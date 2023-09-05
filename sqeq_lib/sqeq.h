@@ -4,25 +4,30 @@
 
 
 // one set of quadratic equation parameters:
-struct SqeqParam {
-    double a;
-    double b;
-    double c;
+struct QueqParam {
+    int a;
+    int b;
+    int c;
 
-    bool operator==(const SqeqParam& other) const;
-    void print() const;
+    bool operator==(const QueqParam& other) const;
+    void print(std::ostream& stream) const;
+};
+
+// quadratic equation roots:
+struct QueqRoots {
+    double x1;
+    double x2;
 };
 
 // one quadratic equation:
-class QuadraticEquationSolution {
+class QuadraticEquation {
 public:
-    QuadraticEquationSolution();
-    explicit QuadraticEquationSolution(SqeqParam coeffs);
+    QuadraticEquation();
+    explicit QuadraticEquation(QueqParam coeffs);
 
-    [[nodiscard]] double x1() const;
-    [[nodiscard]] double x2() const;
-    [[nodiscard]] bool hasSolution() const;
-    [[nodiscard]] bool isSolved() const;
+    [[nodiscard]] std::optional<double> x1() const;
+    [[nodiscard]] std::optional<double> x2() const;
+    [[nodiscard]] std::optional<bool> isSolved() const;
     [[nodiscard]] double xExtr() const;
     [[nodiscard]] double yExtr() const;
     void solve();
@@ -30,14 +35,12 @@ public:
     void printRoots(std::ostream& stream) const;
     void printExtr(std::ostream& stream) const;
 private:
-    SqeqParam m_coeffs;
-    double m_x1;
-    double m_x2;
-    bool m_hasSolution;
-    bool m_solved;
+    QueqParam m_coeffs;
+    std::optional<QueqRoots> m_roots;
+    bool m_isSolved;
     double m_xExtr;
     double m_yExtr;
 };
 
 std::vector<int> transformParams(int argc, char * argv[]);
-std::vector<SqeqParam> collectParameters(int argc, char * argv[]);
+std::vector<QueqParam> collectParameters(int argc, char * argv[]);

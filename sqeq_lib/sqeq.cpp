@@ -1,12 +1,12 @@
 #include "sqeq.h"
 #include <iostream>
 
-bool SqeqParam::operator==(const SqeqParam& other) const {
+bool QueqParam::operator==(const QueqParam& other) const {
     return a == other.a && b == other.b && c == other.c;
 }
 
-void SqeqParam::print() const {
-    std::cout << "(" << a << " " << b << " " << c << ")";
+void QueqParam::print(std::ostream& stream) const {
+    stream << "(" << a << " " << b << " " << c << ")";
 }
 
 // Transform initial coefficients from command line arguments to int vector.
@@ -35,17 +35,17 @@ std::vector<int> transformParams(int argc, char * argv[]) {
 }
 
 // Organizing equations coeffs into SqeqParam structure for each equation:
-std::vector<SqeqParam> collectParameters(int argc, char * argv[]) {
-    std::vector<SqeqParam> result;
+std::vector<QueqParam> collectParameters(int argc, char * argv[]) {
+    std::vector<QueqParam> result;
 
     const std::vector<int> coeffs = transformParams(argc, argv);
 
     int i = 0;
     while (i < argc - 1) {
-        SqeqParam params{
-                static_cast<double>(coeffs[i]),
-                static_cast<double>(coeffs[i + 1]),
-                static_cast<double>(coeffs[i + 2])
+        QueqParam params{
+                (coeffs[i]),
+                (coeffs[i + 1]),
+                (coeffs[i + 2])
         };
         result.push_back(params);
         i += 3;
@@ -53,72 +53,62 @@ std::vector<SqeqParam> collectParameters(int argc, char * argv[]) {
     return result;
 }
 
-QuadraticEquationSolution::QuadraticEquationSolution() :
-        m_coeffs{}, m_x1{0}, m_x2{0}, m_hasSolution{false}, m_solved{false}, m_xExtr{0}, m_yExtr{0} {
+QuadraticEquation::QuadraticEquation() :
+        m_coeffs{}, m_isSolved{false}, m_xExtr{0}, m_yExtr{0} {
 }
 
-QuadraticEquationSolution::QuadraticEquationSolution(SqeqParam coeffs) :
-        QuadraticEquationSolution() {
+QuadraticEquation::QuadraticEquation(QueqParam coeffs) :
+        QuadraticEquation() {
     m_coeffs = coeffs;
 }
 
 // Solve quadratic equation:
-void QuadraticEquationSolution::solve() {
-    if (m_coeffs.a == 0 && m_coeffs.b == 0 && m_coeffs.b == 0) {
-        m_x1 = INFINITY;
-        m_x2 = INFINITY;
-        m_hasSolution = true;
-    } else if (m_coeffs.b == 0 && m_coeffs.b == 0) {
-        m_x1 = 0;
-        m_x2 = m_x1;
-        m_hasSolution = true;
-    } else if (m_coeffs.a == 0) {
-        m_x1 = -m_coeffs.c / m_coeffs.b;
-        m_x2 = m_x1;
-        m_hasSolution = true;
+// TODO: add solving linear equation when a=0
+// For now accept that a coefficient can not be zero
+void QuadraticEquation::solve() {
+    if (m_coeffs.b == 0 && m_coeffs.c == 0) {
+        m_roots->x1 = 0;
+        m_roots->x2 = m_roots->x1;
+        m_isSolved = true;
     } else {
         double discr = m_coeffs.b * m_coeffs.b - 4 * m_coeffs.a * m_coeffs.c;
         if (discr > 0) {
-            m_x1 = (-m_coeffs.b + std::sqrt(discr)) / (2 * m_coeffs.a);
-            m_x2 = (-m_coeffs.b - std::sqrt(discr)) / (2 * m_coeffs.a);
-            m_hasSolution = true;
+            m_roots->x1 = (-m_coeffs.b + std::sqrt(discr)) / (2 * m_coeffs.a);
+            m_roots->x2 = (-m_coeffs.b - std::sqrt(discr)) / (2 * m_coeffs.a);
+            m_isSolved = true;
         } else if (discr == 0) {
-            m_x1 = -m_coeffs.b / (2 * m_coeffs.a);
-            m_x2 = m_x1;
-            m_hasSolution = true;
+            m_roots->x1 = -m_coeffs.b / (2 * m_coeffs.a);
+            m_roots->x2 = m_roots->x1;
+            m_isSolved = true;
         } else {
-            m_hasSolution = false;
+            m_isSolved = false;
         }
     }
-    m_solved = true;
+//    m_solved = true;
 }
 
-double QuadraticEquationSolution::x1() const {
-    return m_x1;
+std::optional<double> QuadraticEquation::x1() const {
+    return m_roots->x1;
 }
 
-double QuadraticEquationSolution::x2() const {
-    return m_x2;
+std::optional<double> QuadraticEquation::x2() const {
+    return m_roots->x2;
 }
 
-bool QuadraticEquationSolution::hasSolution() const {
-    return m_hasSolution;
+std::optional<bool> QuadraticEquation::isSolved() const {
+    return m_isSolved;
 }
 
-bool QuadraticEquationSolution::isSolved() const {
-    return m_solved;
-}
-
-double QuadraticEquationSolution::xExtr() const {
+double QuadraticEquation::xExtr() const {
     return m_xExtr;
 }
 
-double QuadraticEquationSolution::yExtr() const {
+double QuadraticEquation::yExtr() const {
     return m_yExtr;
 }
 
 // Calculate extremums of quadratic function
-void QuadraticEquationSolution::findExtremums() {
+void QuadraticEquation::findExtremums() {
     if (m_coeffs.a != 0) {
         m_xExtr = -m_coeffs.b / (2 * m_coeffs.a);
         if (m_xExtr == -0) {m_xExtr = 0;}
@@ -129,23 +119,37 @@ void QuadraticEquationSolution::findExtremums() {
 }
 
 // Print roots of equation
-void QuadraticEquationSolution::printRoots(std::ostream& stream) const {
-    if (m_hasSolution) {
-        if (m_x1 != m_x2) {
-            stream << "(" << m_x1 << ", " << m_x2 << ")";
-        } else if (m_x1 == std::numeric_limits<double>::infinity() || m_x1 == -std::numeric_limits<double>::infinity()) {
-            stream << "Infinite number of roots";
-        }
-        else {
-            stream << "(" << m_x1 << ")";
-        }
-    } else {
-        stream << "no roots";
-    }
+void QuadraticEquation::printRoots(std::ostream& stream) const {
+    // if equation was solved:
+//    if (m_hasSolution.has_value()) {
+//        // TODO: сделать ASSERT - поверку чтобы отслеживать что уравнение решалось на этапе компиляции
+//        // if equation has solution:
+//        if (m_hasSolution.value()) {
+//            // if both roots exist:
+//            if (m_x1.has_value() && m_x2.has_value()) {
+//                // if existing roots are different:
+//                if (m_x1 != m_x2) {
+//                    stream << "(" << m_x1.value_or(0) << ", " << m_x2.value_or(0) << ")";
+//                // if existing roots are equal:
+//                } else {
+//                    stream << "(" << m_x1.value_or(0) << ")";
+//                }
+//                // if a=0, b=0, c=0 it is infinite number of roots:
+//            } else {
+//                stream << "Infinite number of roots";
+//            }
+//
+//        } else {
+//            stream << "no roots";
+//        }
+//    } else {
+//        stream << "Not solved";
+//    }
+
 }
 
 // Print extremums
-void QuadraticEquationSolution::printExtr(std::ostream& stream) const {
+void QuadraticEquation::printExtr(std::ostream& stream) const {
     if (m_coeffs.a != 0) {
         stream << "Xmin=" << m_xExtr;
     } else {
