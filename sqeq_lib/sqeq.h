@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <cmath>
-
+#include <string>
 
 // one set of quadratic equation parameters:
 struct QueqParam {
@@ -11,6 +11,13 @@ struct QueqParam {
 
     bool operator==(const QueqParam& other) const;
     void print(std::ostream& stream) const;
+};
+
+// errors of parsing:
+struct ParamParsingErr {
+    std::vector<std::string> coeffs;
+    std::vector<std::string> err_coeffs;
+    std::string message;
 };
 
 // quadratic equation roots:
