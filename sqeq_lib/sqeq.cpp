@@ -9,6 +9,7 @@ void QueqParam::print(std::ostream& stream) const {
     stream << "(" << a << " " << b << " " << c << ")";
 }
 
+
 // Transform initial coefficients from command line arguments to int vector.
 // Also adding zeroes to the end of parameters pack, as we assume that missing coeffs at the end equal zeroes:
 std::vector<int> transformParams(int argc, char * argv[], int pack_length) {
@@ -48,23 +49,35 @@ std::vector<int> transformParams(int argc, char * argv[], int pack_length) {
     return result;
 }
 
-// Organizing equations coeffs into SqeqParam structure for each equation:
-std::vector<QueqParam> collectParameters(int argc, char * argv[], int pack_length) {
-    std::vector<QueqParam> result;
-
-    const std::vector<int> coeffs = transformParams(argc, argv, pack_length);
-
-    int i = 0;
-    while (i < coeffs.size()) {
-        QueqParam params{
-                (coeffs[i]),
-                (coeffs[i + 1]),
-                (coeffs[i + 2])
-        };
-        result.push_back(params);
-        i += 3;
+int stringviewToInt(std::string_view& strv) {
+    int result;
+    auto conv = std::from_chars(strv.data(), strv.data() + strv.size(), result);
+    if (conv.ec == std::errc::invalid_argument || conv.ptr != strv.data() + strv.size()) {
+        throw std::invalid_argument("");
     }
     return result;
+}
+
+// Parse coeffs for single SQUARE equation:
+std::variant<QueqParam, ParamParsingErr> parsePackQueq(
+        std::string_view a,
+        std::string_view b,
+        std::string_view c) {
+    try {
+        QueqParam params{stringviewToInt(a), stringviewToInt(b), stringviewToInt(c)};
+        if (params.a == 0) {
+            return ParamParsingErr{
+                std::string(a) + " " + std::string(b) + " " + std::string(b),
+                "Wrong input: Not a quadratic equation."};
+        }
+        return params;
+    } catch (const std::invalid_argument&)  {
+        ParamParsingErr parse_err{
+            std::string(a) + " " + std::string(b) + " " + std::string(b),
+            "Wrong input: Non-int coefficients."
+        };
+        return parse_err;
+    }
 }
 
 QuadraticEquation::QuadraticEquation() :

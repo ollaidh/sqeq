@@ -2,10 +2,14 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <charconv>
+
+struct LneqParam {
+    int a;
+};
 
 // one set of quadratic equation parameters:
-struct QueqParam {
-    int a;
+struct QueqParam : LneqParam {
     int b;
     int c;
 
@@ -13,11 +17,14 @@ struct QueqParam {
     void print(std::ostream& stream) const;
 };
 
+struct CbeqParam {
+    int d;
+};
+
 // errors of parsing:
 struct ParamParsingErr {
-    std::vector<std::string> coeffs;
-    std::vector<std::string> err_coeffs;
-    std::string message;
+    std::string coeffs;  // all coefficients from pack where invalid coeffs occur
+    std::string message;  // error message
 };
 
 // quadratic equation roots:
@@ -50,4 +57,8 @@ private:
 };
 
 std::vector<int> transformParams(int argc, char * argv[], int pack_length);
-std::vector<QueqParam> collectParameters(int argc, char * argv[], int pack_length);
+int stringviewToInt(std::string_view& strv);
+std::variant<QueqParam, ParamParsingErr> parsePackQueq(
+        std::string_view a,
+        std::string_view b,
+        std::string_view c);
