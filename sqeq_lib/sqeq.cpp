@@ -5,6 +5,10 @@ bool QueqParam::operator==(const QueqParam& other) const {
     return a == other.a && b == other.b && c == other.c;
 }
 
+bool ParamParsingErr::operator==(const ParamParsingErr& other) const {
+    return coeffs.compare(other.coeffs) && message.compare(other.message);
+}
+
 void QueqParam::print(std::ostream& stream) const {
     stream << "(" << a << " " << b << " " << c << ")";
 }
@@ -67,13 +71,13 @@ std::variant<QueqParam, ParamParsingErr> parsePackQueq(
         QueqParam params{stringviewToInt(a), stringviewToInt(b), stringviewToInt(c)};
         if (params.a == 0) {
             return ParamParsingErr{
-                std::string(a) + " " + std::string(b) + " " + std::string(b),
+                std::string(a) + " " + std::string(b) + " " + std::string(c),
                 "Wrong input: Not a quadratic equation."};
         }
         return params;
     } catch (const std::invalid_argument&)  {
         ParamParsingErr parse_err{
-            std::string(a) + " " + std::string(b) + " " + std::string(b),
+            std::string(a) + " " + std::string(b) + " " + std::string(c),
             "Wrong input: Non-int coefficients."
         };
         return parse_err;

@@ -25,6 +25,8 @@ struct CbeqParam {
 struct ParamParsingErr {
     std::string coeffs;  // all coefficients from pack where invalid coeffs occur
     std::string message;  // error message
+
+    bool operator==(const ParamParsingErr& other) const;
 };
 
 // quadratic equation roots:

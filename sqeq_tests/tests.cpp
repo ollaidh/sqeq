@@ -1,33 +1,61 @@
 #include <gtest/gtest.h>
 #include "sqeq.h"
 
-TEST(Utils, transformParameters) {
-    // number of input coeffs is not a multiple of 3, assuming that missing coeffs are zeros in the end of the pack
-    char *input[] = {"path/to/app", "1", "12", "3", "24"};
-    std::vector<int> expected = {1, 12, 3, 24, 0, 0};
-    ASSERT_EQ(expected, transformParams(5, input, 3));
+TEST(Utils, parsePackQuad_Ok) {
+    std::variant<QueqParam, ParamParsingErr> pack = parsePackQueq("1", "2", "3");
+    ASSERT_TRUE(std::holds_alternative<QueqParam>(pack));
+    QueqParam expected{1, 2, 3};
+    auto real = std::get<QueqParam>(pack);
+    ASSERT_EQ(expected, real);
 }
 
-TEST(Utils, transformParametersErrNumber) {
-    // no coefficients provided
-    char *input[] = {"path/to/app"};
-    ASSERT_THROW(transformParams(1, input, 3), std::invalid_argument);
+TEST(Utils, parsePackQuadOk_notQuad) {
+    std::variant<QueqParam, ParamParsingErr> pack = parsePackQueq("0", "2", "3");
+    ASSERT_TRUE(std::holds_alternative<ParamParsingErr>(pack));
+    ParamParsingErr expected{"0 2 3", "Wrong input: Not a quadratic equation."};
+    auto real = std::get<ParamParsingErr>(pack);
+
+    ASSERT_EQ(expected.message, real.message);
+    ASSERT_EQ(expected.coeffs, real.coeffs);
 }
 
-TEST(Utils, transformParametersErrType) {
-    // one or more provided coefficients can't be converted to int
-    char *input[] = {"path/to/app", "1", "aaa", "3"};
-    ASSERT_THROW(transformParams(1, input, 3), std::invalid_argument);
+TEST(Utils, parsePackQuadOk_notIntCoeffs) {
+    std::variant<QueqParam, ParamParsingErr> pack = parsePackQueq("0g", "2", "3");
+    ASSERT_TRUE(std::holds_alternative<ParamParsingErr>(pack));
+    ParamParsingErr expected{"0g 2 3", "Wrong input: Non-int coefficients."};
+    auto real = std::get<ParamParsingErr>(pack);
+
+    ASSERT_EQ(expected.message, real.message);
+    ASSERT_EQ(expected.coeffs, real.coeffs);
 }
 
-//TEST(Utils, collecttParams) {
+//TEST(Utils, transformParameters) {
+//    // number of input coeffs is not a multiple of 3, assuming that missing coeffs are zeros in the end of the pack
+//    char *input[] = {"path/to/app", "1", "12", "3", "24"};
+//    std::vector<int> expected = {1, 12, 3, 24, 0, 0};
+//    ASSERT_EQ(expected, transformParams(5, input, 3));
+//}
+//
+//TEST(Utils, transformParametersErrNumber) {
+//    // no coefficients provided
+//    char *input[] = {"path/to/app"};
+//    ASSERT_THROW(transformParams(1, input, 3), std::invalid_argument);
+//}
+//
+//TEST(Utils, transformParametersErrType) {
+//    // one or more provided coefficients can't be converted to int
+//    char *input[] = {"path/to/app", "1", "aaa", "3"};
+//    ASSERT_THROW(transformParams(1, input, 3), std::invalid_argument);
+//}
+//
+//TEST(Utils, parsingParams) {
 //    char *input[] = {"path/to/app", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 //    std::vector<QueqParam> expected = {
 //            {1, 2, 3},
 //            {4, 5, 6},
 //            {7, 8, 9}
 //    };
-//    ASSERT_EQ(expected, collectParameters(10, input));
+//    ASSERT_EQ(expected, parseParameters(10, input));
 //}
 //
 //TEST(QE, qeSolveOk) {
