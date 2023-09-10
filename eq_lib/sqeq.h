@@ -46,7 +46,7 @@ public:
     [[nodiscard]] std::optional<bool> isSolved() const;
     [[nodiscard]] double xExtr() const;
     [[nodiscard]] double yExtr() const;
-    void solve();
+    void solve_eq();
     void findExtremums();
     void printRoots(std::ostream& stream) const;
     void printExtr(std::ostream& stream) const;
@@ -60,7 +60,7 @@ private:
 
 std::vector<int> transformParams(int argc, char * argv[], int pack_length);
 std::vector<std::string> splitString(const std::string& word, const char& separator);
-std::vector<std::string> readCoeffsFromFile(std::string &filepath);
+void solveFromFile(std::string &filepath);
 int stringviewToInt(std::string_view& strv);
 std::variant<QueqParam, ParamParsingErr> parsePackQueq(
         std::string_view a,

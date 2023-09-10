@@ -3,6 +3,6 @@ project(SquareEquation)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_subdirectory(sqeq_app)
-add_subdirectory(sqeq_lib)
-add_subdirectory(sqeq_tests)
+add_subdirectory(eq_app)
+add_subdirectory(eq_lib)
+add_subdirectory(eq_tests)

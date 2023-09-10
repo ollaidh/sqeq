@@ -67,28 +67,16 @@ std::vector<std::string> splitString(const std::string& word, const char& separa
 }
 
 // Read coeffs input sequence from file:
-std::vector<std::string> readCoeffsFromFile(std::string &filepath) {
+void solveFromFile(std::string &filepath) {
     std::vector<std::string> result;
     std::ifstream file(filepath);
     if (file.is_open()) {
         std::string line;
         while (std::getline(file, line)) {
             std::vector<std::string> coeffs;
-            std::string  s;
-            std::istringstream ss(line);
-
-            while (getline(ss, s, ' ')) {
-//                std::cout << s << " ";
-                if (!s.empty()) {
-                    coeffs.push_back(s);
-                }
-            }
-            for (const std::string& c : coeffs) {
-                std::cout << "'" << c << "'" << " ";
-            }
+            coeffs = splitString(line, ' ');
         }
     }
-    return result;
 }
 
 
@@ -134,7 +122,7 @@ QuadraticEquation::QuadraticEquation(QueqParam coeffs) :
 }
 
 // OLD:
-void QuadraticEquation::solve() {
+void QuadraticEquation::solve_eq() {
     if (m_coeffs.b == 0 && m_coeffs.c == 0) {
         m_roots->x1 = 0;
         m_roots->x2 = m_roots->x1;

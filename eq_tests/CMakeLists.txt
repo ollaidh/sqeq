@@ -1,4 +1,4 @@
-project(sqeq_tests)
+project(eq_tests)
 
 add_executable(${PROJECT_NAME} tests.cpp)
 
@@ -17,6 +17,6 @@ FetchContent_MakeAvailable(googletest)
 
 target_link_libraries(
         ${PROJECT_NAME}
-        sqeq_lib
+        eq_lib
         GTest::gtest_main
 )
