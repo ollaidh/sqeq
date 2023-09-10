@@ -29,6 +29,16 @@ TEST(Utils, parsePackQuadOk_notIntCoeffs) {
     ASSERT_EQ(expected.coeffs, real.coeffs);
 }
 
+TEST(Utils, splitFunc) {
+    char separator = ' ';
+    std::string input1 = " 1 2 3 4   5 ";
+    std::vector<std::string> expected1 = {"1", "2", "3", "4", "5"};
+    std::string input2;
+    std::vector<std::string> expected2 = {};
+    ASSERT_EQ(expected1, splitString(input1,separator));
+    ASSERT_EQ(expected2, splitString(input2,separator));
+}
+
 //TEST(Utils, transformParameters) {
 //    // number of input coeffs is not a multiple of 3, assuming that missing coeffs are zeros in the end of the pack
 //    char *input[] = {"path/to/app", "1", "12", "3", "24"};

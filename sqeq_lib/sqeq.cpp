@@ -1,5 +1,8 @@
 #include "sqeq.h"
 #include <iostream>
+#include <fstream>
+#include <sstream>
+
 
 bool QueqParam::operator==(const QueqParam& other) const {
     return a == other.a && b == other.b && c == other.c;
@@ -13,9 +16,7 @@ void QueqParam::print(std::ostream& stream) const {
     stream << "(" << a << " " << b << " " << c << ")";
 }
 
-
-// Transform initial coefficients from command line arguments to int vector.
-// Also adding zeroes to the end of parameters pack, as we assume that missing coeffs at the end equal zeroes:
+// OLD:
 std::vector<int> transformParams(int argc, char * argv[], int pack_length) {
     if (argc < 2) {
         throw std::invalid_argument("Wrong input: No coefficients were provided!");
@@ -53,6 +54,45 @@ std::vector<int> transformParams(int argc, char * argv[], int pack_length) {
     return result;
 }
 
+std::vector<std::string> splitString(const std::string& word, const char& separator) {
+    std::vector<std::string> result;
+    std::string  s;
+    std::istringstream ss(word);
+    while (getline(ss, s, separator)) {
+        if (!s.empty()) {
+            result.push_back(s);
+        }
+    }
+    return result;
+}
+
+// Read coeffs input sequence from file:
+std::vector<std::string> readCoeffsFromFile(std::string &filepath) {
+    std::vector<std::string> result;
+    std::ifstream file(filepath);
+    if (file.is_open()) {
+        std::string line;
+        while (std::getline(file, line)) {
+            std::vector<std::string> coeffs;
+            std::string  s;
+            std::istringstream ss(line);
+
+            while (getline(ss, s, ' ')) {
+//                std::cout << s << " ";
+                if (!s.empty()) {
+                    coeffs.push_back(s);
+                }
+            }
+            for (const std::string& c : coeffs) {
+                std::cout << "'" << c << "'" << " ";
+            }
+        }
+    }
+    return result;
+}
+
+
+// Convert string_view to int:
 int stringviewToInt(std::string_view& strv) {
     int result;
     auto conv = std::from_chars(strv.data(), strv.data() + strv.size(), result);
@@ -93,9 +133,7 @@ QuadraticEquation::QuadraticEquation(QueqParam coeffs) :
     m_coeffs = coeffs;
 }
 
-// Solve quadratic equation:
-// TODO: add solving linear equation when a=0
-// For now accept that a coefficient can not be zero
+// OLD:
 void QuadraticEquation::solve() {
     if (m_coeffs.b == 0 && m_coeffs.c == 0) {
         m_roots->x1 = 0;
@@ -138,6 +176,7 @@ double QuadraticEquation::yExtr() const {
     return m_yExtr;
 }
 
+// OLD:
 // Calculate extremums of quadratic function
 void QuadraticEquation::findExtremums() {
     if (m_coeffs.a != 0) {
@@ -149,6 +188,7 @@ void QuadraticEquation::findExtremums() {
     }
 }
 
+// OLD:
 // Print roots of equation
 void QuadraticEquation::printRoots(std::ostream& stream) const {
     // if equation was solved:
