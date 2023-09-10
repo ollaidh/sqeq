@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "sqeq.h"
+#include "utils.h"
 
 TEST(Utils, parsePackQuad_Ok) {
     std::variant<QueqParam, ParamParsingErr> pack = parsePackQueq("1", "2", "3");

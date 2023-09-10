@@ -1,8 +1,4 @@
-#pragma once
 #include <iostream>
-#include <cmath>
-#include <string>
-#include <charconv>
 
 struct LneqParam {
     int a;
@@ -59,9 +55,7 @@ private:
 };
 
 std::vector<int> transformParams(int argc, char * argv[], int pack_length);
-std::vector<std::string> splitString(const std::string& word, const char& separator);
 void solveFromFile(std::string &filepath);
-int stringviewToInt(std::string_view& strv);
 std::variant<QueqParam, ParamParsingErr> parsePackQueq(
         std::string_view a,
         std::string_view b,

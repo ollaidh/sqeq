@@ -1,12 +1,12 @@
 #include <iostream>
-#include <fstream>
-
 #include "sqeq.h"
+#include "utils.h"
 
 int main(int argc, char * argv[]) {
     std::string filepath = "/Users/maria/Documents/CPP/SquareEquation/coeffs_input.txt";
     solveFromFile(filepath);
     std::cout << "Ping!";
+    splitString("a b c d", ' ');
 
 
 //    std::string_view a = "0";

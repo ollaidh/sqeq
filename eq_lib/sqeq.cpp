@@ -1,8 +1,9 @@
 #include "sqeq.h"
+#include "utils.h"
 #include <iostream>
 #include <fstream>
-#include <sstream>
-
+#include <cmath>
+#include <string>
 
 bool QueqParam::operator==(const QueqParam& other) const {
     return a == other.a && b == other.b && c == other.c;
@@ -54,17 +55,7 @@ std::vector<int> transformParams(int argc, char * argv[], int pack_length) {
     return result;
 }
 
-std::vector<std::string> splitString(const std::string& word, const char& separator) {
-    std::vector<std::string> result;
-    std::string  s;
-    std::istringstream ss(word);
-    while (getline(ss, s, separator)) {
-        if (!s.empty()) {
-            result.push_back(s);
-        }
-    }
-    return result;
-}
+
 
 // Read coeffs input sequence from file:
 void solveFromFile(std::string &filepath) {
@@ -80,15 +71,6 @@ void solveFromFile(std::string &filepath) {
 }
 
 
-// Convert string_view to int:
-int stringviewToInt(std::string_view& strv) {
-    int result;
-    auto conv = std::from_chars(strv.data(), strv.data() + strv.size(), result);
-    if (conv.ec == std::errc::invalid_argument || conv.ptr != strv.data() + strv.size()) {
-        throw std::invalid_argument("");
-    }
-    return result;
-}
 
 // Parse coeffs for single SQUARE equation:
 std::variant<QueqParam, ParamParsingErr> parsePackQueq(
