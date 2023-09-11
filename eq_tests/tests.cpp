@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "sqeq.h"
+#include "queq.h"
 #include "utils.h"
 
 TEST(Utils, parsePackQuad_Ok) {
