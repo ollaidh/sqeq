@@ -1,21 +1,8 @@
 #include "sqeq.h"
 #include "utils.h"
 #include <iostream>
-#include <fstream>
 #include <cmath>
 #include <string>
-
-bool QueqParam::operator==(const QueqParam& other) const {
-    return a == other.a && b == other.b && c == other.c;
-}
-
-bool ParamParsingErr::operator==(const ParamParsingErr& other) const {
-    return coeffs.compare(other.coeffs) && message.compare(other.message);
-}
-
-void QueqParam::print(std::ostream& stream) const {
-    stream << "(" << a << " " << b << " " << c << ")";
-}
 
 // OLD:
 std::vector<int> transformParams(int argc, char * argv[], int pack_length) {
@@ -57,18 +44,18 @@ std::vector<int> transformParams(int argc, char * argv[], int pack_length) {
 
 
 
-// Read coeffs input sequence from file:
-void solveFromFile(std::string &filepath) {
-    std::vector<std::string> result;
-    std::ifstream file(filepath);
-    if (file.is_open()) {
-        std::string line;
-        while (std::getline(file, line)) {
-            std::vector<std::string> coeffs;
-            coeffs = splitString(line, ' ');
-        }
-    }
-}
+//// Read coeffs input sequence from file:
+//void solveFromFile(std::string &filepath) {
+//    std::vector<std::string> result;
+//    std::ifstream file(filepath);
+//    if (file.is_open()) {
+//        std::string line;
+//        while (std::getline(file, line)) {
+//            std::vector<std::string> coeffs;
+//            coeffs = splitString(line, ' ');
+//        }
+//    }
+//}
 
 
 
@@ -123,7 +110,6 @@ void QuadraticEquation::solve_eq() {
             m_isSolved = false;
         }
     }
-//    m_solved = true;
 }
 
 std::optional<double> QuadraticEquation::x1() const {
@@ -158,36 +144,6 @@ void QuadraticEquation::findExtremums() {
     }
 }
 
-// OLD:
-// Print roots of equation
-void QuadraticEquation::printRoots(std::ostream& stream) const {
-    // if equation was solved:
-//    if (m_hasSolution.has_value()) {
-//        // TODO: сделать ASSERT - поверку чтобы отслеживать что уравнение решалось на этапе компиляции
-//        // if equation has solution:
-//        if (m_hasSolution.value()) {
-//            // if both roots exist:
-//            if (m_x1.has_value() && m_x2.has_value()) {
-//                // if existing roots are different:
-//                if (m_x1 != m_x2) {
-//                    stream << "(" << m_x1.value_or(0) << ", " << m_x2.value_or(0) << ")";
-//                // if existing roots are equal:
-//                } else {
-//                    stream << "(" << m_x1.value_or(0) << ")";
-//                }
-//                // if a=0, b=0, c=0 it is infinite number of roots:
-//            } else {
-//                stream << "Infinite number of roots";
-//            }
-//
-//        } else {
-//            stream << "no roots";
-//        }
-//    } else {
-//        stream << "Not solved";
-//    }
-
-}
 
 // Print extremums
 void QuadraticEquation::printExtr(std::ostream& stream) const {
