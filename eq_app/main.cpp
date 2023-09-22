@@ -1,12 +1,33 @@
 #include <iostream>
-#include "sqeq.h"
 #include "utils.h"
+#include "eq.h"
+
+//#include "solve.h"
+//#include "inheritance_test.h"
+//#include "visitor_sandbox.h"
 
 int main(int argc, char * argv[]) {
-    std::string filepath = "/Users/maria/Documents/CPP/SquareEquation/coeffs_input.txt";
-    solveFromFile(filepath);
-    std::cout << "Ping!";
-    splitString("a b c d", ' ');
+    std::vector<std::string> coeffs{"1", "2", "3"};
+    std::unique_ptr<Equation> eq = createEquation(coeffs);
+    eq->solve();
+
+
+
+
+//    Equation linearEq = LinearEquation{};
+//    Equation quadraticEq = QuadraticEquation{};
+//    Equation cubicEq = CubicEquation{};
+//
+//    solve(linearEq);
+//    solve(quadraticEq);
+//    solve(cubicEq);
+
+
+
+//    std::string filepath = "/Users/maria/Documents/CPP/SquareEquation/coeffs_input.txt";
+//    solveFromFile(filepath);
+//    splitString("a b c d", ' ');
+//    solveEq(3);
 
 
 //    std::string_view a = "0";
