@@ -18,6 +18,13 @@ TEST(parse, basic) {
         std::vector<int> expected = {-273};
         ASSERT_EQ(parseCoeffs(input), expected);
     }
+
+    // string view should also work
+    {
+        std::vector<std::string_view> input = {"42", "314", "256"};
+        std::vector<int> expected = {42, 314, 256};
+        ASSERT_EQ(parseCoeffs(input), expected);
+    }
 }
 
 TEST(parse, invalid) {
