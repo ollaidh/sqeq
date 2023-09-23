@@ -4,20 +4,7 @@
 #include "cbeq.h"
 #include "utils.h"
 
-std::vector<int> verifyCoeffsPack(const std::vector<std::string>& input) {
-    std::vector<int> result;
-    try {
-        for (const std::string& coeff : input) {
-            int c = stringToInt(coeff);
-            if (!result.empty() || (result.empty() && c != 0)) {
-                result.push_back(c);
-            }
-        }
-        return result;
-    } catch (const std::invalid_argument&)  {
-        throw std::invalid_argument("Wrong input: Non-INT coefficients.");
-    };
-}
+
 
 std::unique_ptr<Equation> createEquation(const std::vector<int>& coeffs) {
     std::size_t coeffsAmount = coeffs.size();

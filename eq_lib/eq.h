@@ -9,7 +9,5 @@ public:
     [[nodiscard]] virtual std::vector<int> getRoots() const = 0;
 };
 
-std::vector<int> verifyCoeffsPack(const std::vector<std::string>& input);
-
 std::unique_ptr<Equation> createEquation(const std::vector<int>& coeffs);
 
