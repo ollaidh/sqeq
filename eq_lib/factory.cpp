@@ -1,9 +1,9 @@
+#include "factory.h"
 #include "eq.h"
 #include "lneq.h"
 #include "queq.h"
 #include "cbeq.h"
 #include "utils.h"
-
 
 
 std::unique_ptr<Equation> createEquation(const std::vector<int>& coeffs) {

@@ -11,9 +11,8 @@ add_library(eq_lib
         lneq.h
         cbeq.cpp
         cbeq.h
-        eq.cpp
         eq.h
-        parse.h)
+        parse.h factory.cpp factory.h)
 
 target_include_directories(eq_lib PUBLIC .)
 

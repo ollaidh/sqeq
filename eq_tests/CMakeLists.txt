@@ -3,7 +3,7 @@ project(eq_tests)
 add_executable(${PROJECT_NAME}
         tests.cpp
         parse_tests.cpp
-        )
+        factory_tests.cpp)
 
 include(FetchContent)
 Set(FETCHCONTENT_QUIET FALSE)
