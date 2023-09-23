@@ -4,7 +4,7 @@ LinearEquation::LinearEquation() :
         m_coeffs{}, m_isSolved{false} {
 }
 
-LinearEquation::LinearEquation(std::vector<int> coeffs) :
+LinearEquation::LinearEquation(const std::vector<int>& coeffs) :
         LinearEquation() {
     m_coeffs = coeffs;
 }
@@ -14,6 +14,6 @@ void LinearEquation::solve() {
     std::cout << "Linear equation solved: ";
 }
 
-std::vector<int> LinearEquation::getRoots() {
+std::vector<int> LinearEquation::getRoots() const{
     return m_roots;
 }

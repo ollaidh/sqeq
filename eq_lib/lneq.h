@@ -2,16 +2,15 @@
 
 #include <iostream>
 #include "eq.h"
-//#include "eq_params.h"
 
 
 // one linear equation:
 class LinearEquation :public Equation {
 public:
     LinearEquation();
-    explicit LinearEquation(std::vector<int> coeffs);
-    void solve();
-    std::vector<int> getRoots();
+    explicit LinearEquation(const std::vector<int>& coeffs);
+    void solve() override;
+    [[nodiscard]] std::vector<int> getRoots() const override;
 private:
     std::vector<int> m_coeffs;
     std::vector<int> m_roots;

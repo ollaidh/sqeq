@@ -4,7 +4,7 @@ CubicEquation::CubicEquation() :
         m_coeffs{}, m_isSolved{false} {
 }
 
-CubicEquation::CubicEquation(std::vector<int> coeffs) :
+CubicEquation::CubicEquation(const std::vector<int>& coeffs) :
         CubicEquation() {
     m_coeffs = coeffs;
 }
@@ -13,6 +13,6 @@ void CubicEquation::solve() {
     std::cout << "Cubic equation solved: ";
 }
 
-std::vector<int> CubicEquation::getRoots() {
+std::vector<int> CubicEquation::getRoots() const{
     return m_roots;
 }

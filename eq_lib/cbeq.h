@@ -7,10 +7,10 @@
 class CubicEquation :public Equation{
 public:
     CubicEquation();
-    explicit CubicEquation(std::vector<int> coeffs);
+    explicit CubicEquation(const std::vector<int>& coeffs);
 
-    void solve();
-    std::vector<int> getRoots();
+    void solve() override;
+    [[nodiscard]] std::vector<int> getRoots() const;
 private:
     std::vector<int> m_coeffs;
     std::vector<int> m_roots;
