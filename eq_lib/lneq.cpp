@@ -1,11 +1,6 @@
 #include "lneq.h"
 
-LinearEquation::LinearEquation() :
-        m_coeffs{}, m_isSolved{false} {
-}
-
-LinearEquation::LinearEquation(const std::vector<int>& coeffs) :
-        LinearEquation() {
+LinearEquation::LinearEquation(const std::vector<int>& coeffs) {
     m_coeffs = coeffs;
 }
 

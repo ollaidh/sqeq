@@ -3,16 +3,9 @@
 #include <iostream>
 #include <string>
 
-
-QuadraticEquation::QuadraticEquation() :
-        m_coeffs{}, m_isSolved{false} {
-}
-
-QuadraticEquation::QuadraticEquation(const std::vector<int>& coeffs) :
-        QuadraticEquation() {
+QuadraticEquation::QuadraticEquation(const std::vector<int>& coeffs) {
     m_coeffs = coeffs;
 }
-
 
 void QuadraticEquation::solve() {
     m_roots = {1, 2};

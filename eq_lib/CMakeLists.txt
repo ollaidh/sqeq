@@ -12,7 +12,7 @@ add_library(eq_lib
         cbeq.cpp
         cbeq.h
         eq.h
-        parse.h factory.cpp factory.h)
+        parse.h factory.cpp factory.h eq.cpp)
 
 target_include_directories(eq_lib PUBLIC .)
 

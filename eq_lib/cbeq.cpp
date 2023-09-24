@@ -1,13 +1,9 @@
 #include "cbeq.h"
 
-CubicEquation::CubicEquation() :
-        m_coeffs{}, m_isSolved{false} {
-}
-
-CubicEquation::CubicEquation(const std::vector<int>& coeffs) :
-        CubicEquation() {
+CubicEquation::CubicEquation(const std::vector<int>& coeffs) {
     m_coeffs = coeffs;
 }
+
 void CubicEquation::solve() {
     m_roots = {1, 2, 3};
     std::cout << "Cubic equation solved: ";

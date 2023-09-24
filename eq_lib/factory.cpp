@@ -21,3 +21,5 @@ std::unique_ptr<Equation> createEquation(const std::vector<int>& coeffs) {
         return nullptr;
     }
 }
+
+
