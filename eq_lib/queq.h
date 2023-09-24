@@ -9,5 +9,4 @@ class QuadraticEquation :public Equation {
 public:
     explicit QuadraticEquation(const std::vector<int>& coeffs);
     void solve() override;
-    [[nodiscard]] std::vector<int> getRoots() const override;
 };

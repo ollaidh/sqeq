@@ -35,6 +35,5 @@ TEST(Equations, equalOperator) {
     QuadraticEquation lneq5({1, 2, 3});
     LinearEquation lneq6({5, 6});
     ASSERT_NE(lneq5, lneq6);
-
 }
 

@@ -9,6 +9,3 @@ void LinearEquation::solve() {
     std::cout << "Linear equation solved: ";
 }
 
-std::vector<int> LinearEquation::getRoots() const{
-    return m_roots;
-}

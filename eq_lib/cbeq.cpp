@@ -9,6 +9,3 @@ void CubicEquation::solve() {
     std::cout << "Cubic equation solved: ";
 }
 
-std::vector<int> CubicEquation::getRoots() const{
-    return m_roots;
-}

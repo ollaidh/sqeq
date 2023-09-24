@@ -5,7 +5,7 @@ class Equation {
 public:
     virtual ~Equation() = default;
     virtual void solve() = 0;
-    [[nodiscard]] virtual std::vector<int> getRoots() const = 0;
+    [[nodiscard]] virtual std::vector<int> getRoots() const;
     bool operator==(const Equation& other) const;
 protected:
     std::vector<int> m_coeffs;

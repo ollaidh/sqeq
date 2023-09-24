@@ -11,7 +11,3 @@ void QuadraticEquation::solve() {
     m_roots = {1, 2};
     std::cout << "Quadratic equation solved: ";
 }
-
-std::vector<int> QuadraticEquation::getRoots() const{
-    return m_roots;
-}

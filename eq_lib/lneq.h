@@ -9,5 +9,4 @@ class LinearEquation :public Equation {
 public:
     explicit LinearEquation(const std::vector<int>& coeffs);
     void solve() override;
-    [[nodiscard]] std::vector<int> getRoots() const override;
 };
