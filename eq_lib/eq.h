@@ -5,11 +5,11 @@ class Equation {
 public:
     virtual ~Equation() = default;
     virtual void solve() = 0;
-    [[nodiscard]] virtual std::vector<int> getRoots() const;
+    [[nodiscard]] virtual std::vector<double> getRoots() const;
     bool operator==(const Equation& other) const;
 protected:
     std::vector<int> m_coeffs;
-    std::vector<int> m_roots;
+    std::vector<double> m_roots;
     bool m_isSolved{};
 };
 
