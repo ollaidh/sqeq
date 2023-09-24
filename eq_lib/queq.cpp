@@ -8,6 +8,23 @@ QuadraticEquation::QuadraticEquation(const std::vector<int>& coeffs) {
 }
 
 void QuadraticEquation::solve() {
-    m_roots = {1, 2};
-    std::cout << "Quadratic equation solved: ";
+    double a = m_coeffs[0];
+    double b = m_coeffs[1];
+    double c = m_coeffs[2];
+
+    double discr = b * b - 4 * a * c;
+    double atwice = 2 * a;
+    double lp = -b / atwice;
+    double rp = std::sqrt(discr) / atwice;
+
+    if (discr > 0) {
+        double x1 = lp + rp;
+        double x2 = lp - rp;
+        m_roots = {x1, x2};
+    } else if (discr == 0) {
+        double x1 = -b / atwice;
+        m_roots = {x1};
+    }
+    m_isSolved = true;
 }
+

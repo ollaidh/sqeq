@@ -5,7 +5,10 @@ LinearEquation::LinearEquation(const std::vector<int>& coeffs) {
 }
 
 void LinearEquation::solve() {
-    m_roots = {1};
-    std::cout << "Linear equation solved: ";
+    double a = m_coeffs[0];
+    double b = m_coeffs[1];
+    double x = - b / a;
+    m_roots = {x};
+    m_isSolved = true;
 }
 
