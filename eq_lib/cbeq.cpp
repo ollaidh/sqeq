@@ -43,5 +43,6 @@ void CubicEquation::solve() {
             m_roots = {x1};
         };
     }
+    m_isSolved = true;
 }
 

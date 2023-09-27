@@ -4,7 +4,7 @@ add_executable(${PROJECT_NAME}
         tests.cpp
         parse_tests.cpp
         factory_tests.cpp
-        queq_tests.cpp lneq_tests.cpp)
+        queq_tests.cpp lneq_tests.cpp cbeq_tests.cpp)
 
 include(FetchContent)
 Set(FETCHCONTENT_QUIET FALSE)
