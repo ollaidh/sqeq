@@ -13,7 +13,7 @@ void CubicEquation::solve() {
     double c = double(m_coeffs[3]) / m_coeffs[0];
 
     double Q = (a * a - 3 * b) / 9;
-    double R = (2 * a * a - 9 * a * b + 27 * c) / 54;
+    double R = (2 * a * a * a - 9 * a * b + 27 * c) / 54;
     double S = Q * Q * Q - R * R;
 
     if (S == 0) {
@@ -33,7 +33,7 @@ void CubicEquation::solve() {
             // x2 and x3 are complex, skip them here
             m_roots = {x1};
         } else if (Q < 0) {
-            double phi = 1.0 / 3 * asinh(R / sqrt(Q * Q * Q));
+            double phi = 1.0 / 3 * asinh(abs(R) / sqrt(abs(Q * Q * Q)));
             double x1 = -2 * sign(R) * sqrt(abs(Q)) * sinh(phi) - a / 3;
             // x2 and x3 are complex, skip them here
             m_roots = {x1};
