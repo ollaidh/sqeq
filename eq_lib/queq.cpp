@@ -1,6 +1,5 @@
 #include "queq.h"
 #include "utils.h"
-#include <iostream>
 #include <string>
 
 QuadraticEquation::QuadraticEquation(const std::vector<int>& coeffs) {
