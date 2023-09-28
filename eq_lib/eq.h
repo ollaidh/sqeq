@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 
+// Base class for all equations
 class Equation {
 public:
     virtual ~Equation() = default;

@@ -11,21 +11,24 @@ void CubicEquation::solve() {
     double a = double(m_coeffs[1]) / m_coeffs[0];
     double b = double(m_coeffs[2]) / m_coeffs[0];
     double c = double(m_coeffs[3]) / m_coeffs[0];
+
+    // introduce additional variables to avoid code duplication
     double aQuad = a * a;
     double aDiv3 = a / 3;
     double PiTwoDivThree = (2.0 / 3) * M_PI;
 
+    // Q, R, S variables values define the way to calculate roots
     double Q = (aQuad - 3 * b) / 9;
     double Qcubic = Q * Q * Q;
     double minus2sqrtQ = -2 * sqrt(abs(Q));
     double R = (2 * a * aQuad - 9 * a * b + 27 * c) / 54;
     double S = Qcubic - R * R;
     double sR = sign(R);
-
+    double cbrtR = cbrt(R);
 
     if (S == 0) {
-        double x1 = -2 * cbrt(R) - aDiv3;
-        double x2 = cbrt(R) - aDiv3;
+        double x1 = -2 * cbrtR - aDiv3;
+        double x2 = cbrtR - aDiv3;
         m_roots = {x1, x2};
     } else if (S > 0) {
         double phi = (1.0 / 3) * acos((abs(R) / (sqrt(abs(Qcubic)))));

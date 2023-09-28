@@ -2,6 +2,7 @@
 #include "cbeq.h"
 
 TEST(cbeq, solve) {
+    // Q, S variables values define the way to calculate roots, one test for each combination of Q and S
     {
         // S > 0:
         CubicEquation eq({2, -12, 22, -12});
@@ -10,6 +11,7 @@ TEST(cbeq, solve) {
         std::vector<double> roots = eq.getRoots();
         ASSERT_EQ(roots.size(), expected.size());
         for (int i = 0; i < roots.size(); i++) {
+            // using ASSERT_NEAR here and below as we are comparing doubles and sometimes zeros
             ASSERT_NEAR(roots[i], expected[i], 1e-8);
         }
     }
