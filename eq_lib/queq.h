@@ -1,7 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include "eq_params.h"
 #include "eq.h"
 
 
