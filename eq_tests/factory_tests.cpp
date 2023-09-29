@@ -5,6 +5,7 @@
 #include "cbeq.h"
 #include "utils.h"
 
+// verify that factory creates the right type of equation with right coeffs:
 TEST(factory, basic) {
     std::vector<int> qu_input{1, 2, 3};
     auto qu_result = createEquation(qu_input);
@@ -23,6 +24,7 @@ TEST(factory, basic) {
 
 }
 
+// verify operator == for Equation class:
 TEST(Equations, equalOperator) {
     LinearEquation lneq1({1, 2});
     LinearEquation lneq2({5, 6});

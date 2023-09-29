@@ -11,6 +11,7 @@ void QuadraticEquation::solve() {
     double b = m_coeffs[1];
     double c = m_coeffs[2];
 
+    // to get rid of code repetitions:
     double discr = b * b - 4 * a * c;
     double atwice = 2 * a;
     double lp = -b / atwice;

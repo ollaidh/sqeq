@@ -5,8 +5,6 @@ add_library(eq_lib
         queq.h
         utils.h
         utils.cpp
-        eq_params.cpp
-        eq_params.h
         lneq.cpp
         lneq.h
         cbeq.cpp

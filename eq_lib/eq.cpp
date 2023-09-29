@@ -5,6 +5,7 @@ bool Equation::operator==(const Equation &other) const {
 }
 
 std::vector<double> Equation::getRoots() const {
+    // this function can't be called if an equation wasn't solved
     assert(m_isSolved);
     return m_roots;
 }
