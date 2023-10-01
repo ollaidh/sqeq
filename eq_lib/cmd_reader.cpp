@@ -21,7 +21,7 @@ std::vector<std::string_view> CommandlineReader::getCoeffs() {
     }
     for (int i = 0; i < len; i++) {
         int j = m_currInd + i + 1;
-        if (i > m_argc) {
+        if (j >= m_argc) {
             return {};
         }
         result.emplace_back(m_argv[j]);
