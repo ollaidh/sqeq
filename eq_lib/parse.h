@@ -5,6 +5,7 @@
 #include <charconv>
 
 // check if input coeffs are valid (could be represented as int) and return a vector of int coeffs
+// using template to be able to take both string and string_view as input
 template <typename S>
 std::vector<int> parseCoeffs(const std::vector<S>& input)
 {
