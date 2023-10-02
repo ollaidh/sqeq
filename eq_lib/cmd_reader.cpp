@@ -8,8 +8,8 @@ CommandlineReader::CommandlineReader(int argc, const char **argv) {
     m_currInd = 1;
 }
 
-std::vector<std::string_view> CommandlineReader::getCoeffs() {
-    std::vector<std::string_view> result;
+std::vector<std::string> CommandlineReader::getCoeffs() {
+    std::vector<std::string> result;
 
     int len = 0;
     if (m_argv[m_currInd][0] == 'L') {

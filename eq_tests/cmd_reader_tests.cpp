@@ -7,17 +7,17 @@ TEST(cmdReader, getCoeffs) {
 
     auto resultCall_1 = reader.getCoeffs();
     ASSERT_EQ(resultCall_1.size(), 3);
-    std::vector<std::string_view> expectedCall_1 = {"1", "2", "3"};
+    std::vector<std::string> expectedCall_1 = {"1", "2", "3"};
     ASSERT_EQ(resultCall_1, expectedCall_1);
 
     auto resultCall_2 = reader.getCoeffs();
     ASSERT_EQ(resultCall_2.size(), 2);
-    std::vector<std::string_view> expectedCall_2 = {"4", "5"};
+    std::vector<std::string> expectedCall_2 = {"4", "5"};
     ASSERT_EQ(resultCall_2, expectedCall_2);
 
     auto resultCall_3 = reader.getCoeffs();
     ASSERT_TRUE(resultCall_3.empty());
-    std::vector<std::string_view> expectedCall_3 = {};
+    std::vector<std::string> expectedCall_3 = {};
     ASSERT_EQ(resultCall_3, expectedCall_3);
 
 }
