@@ -14,7 +14,7 @@ add_library(eq_lib
         eq_factory.cpp
         eq_factory.h
         eq.cpp
-        cmd_reader.h cmd_reader.cpp file_reader.h file_reader.cpp printer.cpp printer.h)
+        cmd_reader.h cmd_reader.cpp file_reader.h file_reader.cpp printer.cpp printer.h reader.h)
 
 target_include_directories(eq_lib PUBLIC .)
 
