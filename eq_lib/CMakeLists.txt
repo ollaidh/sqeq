@@ -11,8 +11,8 @@ add_library(eq_lib
         cbeq.h
         eq.h
         parse.h
-        factory.cpp
-        factory.h
+        eq_factory.cpp
+        eq_factory.h
         eq.cpp
         cmd_reader.h cmd_reader.cpp file_reader.h file_reader.cpp printer.cpp printer.h)
 

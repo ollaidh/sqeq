@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "factory.h"
+#include "eq_factory.h"
 #include "lneq.h"
 #include "queq.h"
 #include "cbeq.h"

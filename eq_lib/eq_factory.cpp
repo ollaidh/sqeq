@@ -1,4 +1,4 @@
-#include "factory.h"
+#include "eq_factory.h"
 #include "eq.h"
 #include "lneq.h"
 #include "queq.h"
