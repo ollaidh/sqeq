@@ -9,7 +9,7 @@ FileReader::FileReader(std::istream* stream) :
 
 std::vector<std::string> FileReader::getCoeffs() {
     std::string line;
-    while (std::getline(*m_stream, line)) {
+    if (std::getline(*m_stream, line)) {
         return splitString(line, ' ');
     }
     return {};
