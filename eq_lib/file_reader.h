@@ -3,8 +3,8 @@
 
 class FileReader {
 public:
-    FileReader(const std::string& filepath);
+    FileReader(std::istream* stream);
     std::vector<std::string> getCoeffs();
 private:
-    std::ifstream m_file;
+    std::istream* m_stream;
 };

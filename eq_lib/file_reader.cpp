@@ -1,15 +1,15 @@
 #include "file_reader.h"
 #include "utils.h"
 
-FileReader::FileReader(const std::string& filepath) :
-    m_file(filepath)
+FileReader::FileReader(std::istream* stream) :
+        m_stream(stream)
 {
 
 }
 
 std::vector<std::string> FileReader::getCoeffs() {
     std::string line;
-    while (std::getline(m_file, line)) {
+    while (std::getline(*m_stream, line)) {
         return splitString(line, ' ');
     }
     return {};
