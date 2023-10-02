@@ -9,3 +9,7 @@ std::vector<double> Equation::getRoots() const {
     assert(m_isSolved);
     return m_roots;
 }
+
+std::vector<int> Equation::getCoeffs() const {
+    return m_coeffs;
+}
