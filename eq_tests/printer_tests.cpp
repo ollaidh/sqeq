@@ -19,8 +19,4 @@ TEST(print, basic) {
         print_eq(coeffs, roots, stream);
         ASSERT_EQ("(1 2 3) => no roots", stream.str());
     }
-
-
-
-
 }
