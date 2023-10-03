@@ -7,7 +7,7 @@
 
 std::unique_ptr<Reader> createReader(int argc, const char **argv) {
     if (argc < 2) {
-        return nullptr;
+        throw std::invalid_argument("No input arguments! Please provide.");
     }
     if (argc == 2) {
         return std::make_unique<FileReader>(std::make_unique<std::ifstream>(argv[1]));

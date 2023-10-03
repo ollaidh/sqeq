@@ -8,8 +8,7 @@ TEST(readerFactory, basic) {
     {
         int argc = 1;
         const char *argv[] = {"path"};
-        auto reader = createReader(argc, argv);
-        ASSERT_EQ(reader, nullptr);
+        ASSERT_THROW(createReader(argc, argv), std::invalid_argument);
     }
 
     {
