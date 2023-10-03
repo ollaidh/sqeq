@@ -1,11 +1,15 @@
+#pragma once
 #include <iostream>
 #include <fstream>
 #include "reader.h"
 
-class FileReader : Reader {
+// This class reads coeffs from file.
+// This class takes ownership of an istream
+// (used to read from file)
+class FileReader : public Reader {
 public:
-    explicit FileReader(std::istream* stream);
+    explicit FileReader(std::unique_ptr<std::istream> stream);
     std::vector<std::string> getCoeffs() override;
 private:
-    std::istream* m_stream;
+    std::unique_ptr<std::istream> m_stream;
 };

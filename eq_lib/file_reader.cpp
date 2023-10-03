@@ -1,8 +1,8 @@
 #include "file_reader.h"
 #include "utils.h"
 
-FileReader::FileReader(std::istream* stream) :
-        m_stream(stream)
+FileReader::FileReader(std::unique_ptr<std::istream> stream) :
+        m_stream(std::move(stream))
 {
 
 }

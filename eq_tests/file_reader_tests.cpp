@@ -4,9 +4,8 @@
 
 
 TEST(fileReader, getCoeffs) {
-    std::stringstream stream("1 2 3\n2 3\n\n1 2 3 4");
 
-    FileReader reader(&stream);
+    FileReader reader(std::make_unique<std::stringstream>("1 2 3\n2 3\n\n1 2 3 4"));
 
     auto resultCall_1 = reader.getCoeffs();
     ASSERT_EQ(resultCall_1.size(), 3);
