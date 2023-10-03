@@ -6,6 +6,9 @@
 #include "file_reader.h"
 
 std::unique_ptr<Reader> createReader(int argc, const char **argv) {
+    if (argc < 2) {
+        return nullptr;
+    }
     if (argv[1] == std::string_view("L") ||
         argv[1] == std::string_view("Q") ||
         argv[1] == std::string_view("C")) {
