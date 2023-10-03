@@ -3,8 +3,8 @@ project(eq_tests)
 add_executable(${PROJECT_NAME}
         tests.cpp
         parse_tests.cpp
-        factory_tests.cpp
-        queq_tests.cpp lneq_tests.cpp cbeq_tests.cpp cmd_reader_tests.cpp file_reader_tests.cpp printer_tests.cpp)
+        eq_factory_tests.cpp
+        queq_tests.cpp lneq_tests.cpp cbeq_tests.cpp cmd_reader_tests.cpp file_reader_tests.cpp printer_tests.cpp reader_factory_tests.cpp)
 
 include(FetchContent)
 Set(FETCHCONTENT_QUIET FALSE)
