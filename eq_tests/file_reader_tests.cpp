@@ -21,4 +21,6 @@ TEST(fileReader, getCoeffs) {
     std::vector<std::string> expectedCall_4 = {"1", "2", "3", "4"};
     ASSERT_EQ(resultCall_4, expectedCall_4);
 
+    ASSERT_TRUE(reader.atEnd());
+
 }

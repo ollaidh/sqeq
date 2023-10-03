@@ -20,4 +20,6 @@ TEST(cmdReader, getCoeffs) {
     std::vector<std::string> expectedCall_3 = {};
     ASSERT_EQ(resultCall_3, expectedCall_3);
 
+    ASSERT_TRUE(reader.atEnd());
+
 }

@@ -19,6 +19,7 @@ std::vector<std::string> CommandlineReader::getCoeffs() {
     } else if (m_argv[m_currInd][0] == 'C') {
         len = 4;
     }
+    m_atEnd = m_currInd + len + 1 >= m_argc;
     for (int i = 0; i < len; i++) {
         int j = m_currInd + i + 1;
         if (j >= m_argc) {
@@ -28,6 +29,10 @@ std::vector<std::string> CommandlineReader::getCoeffs() {
     }
     m_currInd += len + 1;
     return result;
+}
+
+bool CommandlineReader::atEnd() const {
+    return m_atEnd;
 }
 
 

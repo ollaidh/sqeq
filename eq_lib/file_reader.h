@@ -10,6 +10,8 @@ class FileReader : public Reader {
 public:
     explicit FileReader(std::unique_ptr<std::istream> stream);
     std::vector<std::string> getCoeffs() override;
+    [[nodiscard]] bool atEnd() const override;
 private:
     std::unique_ptr<std::istream> m_stream;
+    bool m_atEnd;
 };

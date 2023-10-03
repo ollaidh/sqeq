@@ -14,4 +14,4 @@ void print_sequence(std::vector<T> sequence, std::ostream& stream) {
     stream << ")";
 }
 
-void print_eq(const std::vector<int>& coeffs, const std::vector<double>& roots, std::ostream& stream);
+void printEq(const std::vector<int>& coeffs, const std::vector<double>& roots, std::ostream& stream);
