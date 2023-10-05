@@ -24,3 +24,10 @@ target_link_libraries(
         eq_lib
         GTest::gtest_main
 )
+
+file(
+        COPY
+        ${CMAKE_CURRENT_SOURCE_DIR}/coeffs.txt
+        DESTINATION
+        ${CMAKE_CURRENT_BINARY_DIR}
+        )
