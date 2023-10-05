@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+
 #include "cbeq.h"
 
 TEST(cbeq, solve) {

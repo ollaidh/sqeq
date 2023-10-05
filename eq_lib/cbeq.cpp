@@ -1,5 +1,7 @@
-#include <cmath>
 #include "cbeq.h"
+
+#include <cmath>
+
 #include "utils.h"
 
 CubicEquation::CubicEquation(const std::vector<int>& coeffs) {

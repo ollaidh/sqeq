@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+
 #include "lneq.h"
 
 TEST(lneq, solve) {

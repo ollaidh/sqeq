@@ -1,7 +1,8 @@
 #include <gtest/gtest.h>
+
 #include "reader_factory.h"
+
 #include "cmd_reader.h"
-#include "file_reader.h"
 
 
 TEST(readerFactory, basic) {
@@ -23,9 +24,7 @@ TEST(readerFactory, basic) {
     {
         int argc = 2;
         const char *argv[] = {"path", "coeffs.txt"};
-
-        auto reader = createReader(argc, argv);
-        ASSERT_NE(reader, nullptr);
-        ASSERT_NE(dynamic_cast<FileReader*>(reader.get()), nullptr);
+        ASSERT_THROW(createReader(argc, argv), std::invalid_argument);
     }
+    // Here we're not testing reader creation with non-valid file as we test it in integration tests
 }

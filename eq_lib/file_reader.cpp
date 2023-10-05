@@ -1,4 +1,5 @@
 #include "file_reader.h"
+
 #include "utils.h"
 
 FileReader::FileReader(std::unique_ptr<std::istream> stream) :

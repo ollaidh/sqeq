@@ -1,5 +1,7 @@
 #pragma once
+
 #include <iostream>
+
 #include "eq.h"
 
 // create object of type LinearEquation, QuadraticEquation,

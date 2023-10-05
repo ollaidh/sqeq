@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+
 #include "printer.h"
 
 TEST(print, basic) {

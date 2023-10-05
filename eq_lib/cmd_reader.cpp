@@ -1,11 +1,12 @@
 #include "cmd_reader.h"
-#include <map>
 
+#include <map>
 
 CommandlineReader::CommandlineReader(int argc, const char **argv) {
     m_argc = argc;
     m_argv = argv;
     m_currInd = 1;
+    m_atEnd = false;
 }
 
 std::vector<std::string> CommandlineReader::getCoeffs() {

@@ -1,6 +1,8 @@
 #pragma once
+
 #include <iostream>
 #include <fstream>
+
 #include "reader.h"
 
 // This class reads coeffs from file.

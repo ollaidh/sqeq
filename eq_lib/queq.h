@@ -1,8 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include "eq.h"
 
+#include "eq.h"
 
 class QuadraticEquation :public Equation {
 public:

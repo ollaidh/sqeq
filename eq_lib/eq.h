@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 
 // Base class for all equations

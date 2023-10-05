@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "eq.h"
 
 template<typename T>

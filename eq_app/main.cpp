@@ -1,8 +1,9 @@
 #include <iostream>
+
+#include "eq_factory.h"
 #include "reader.h"
 #include "reader_factory.h"
 #include "parse.h"
-#include "eq_factory.h"
 #include "printer.h"
 
 int main(int argc, const char * argv[]) {

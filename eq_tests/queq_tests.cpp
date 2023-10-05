@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+
 #include "queq.h"
 
 TEST(queq, solve) {

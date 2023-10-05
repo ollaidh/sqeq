@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
-#include <filesystem>
+
 #include "file_reader.h"
+
+#include <filesystem>
 
 
 TEST(fileReader, getCoeffs) {
