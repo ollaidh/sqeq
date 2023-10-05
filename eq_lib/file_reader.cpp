@@ -5,7 +5,7 @@ FileReader::FileReader(std::unique_ptr<std::istream> stream) :
         m_stream(std::move(stream)),
         m_atEnd(false)
 {
-    if (m_stream->bad()) {
+    if (m_stream->fail()) {
         throw std::invalid_argument("Unable to open input stream!");
     }
 }
