@@ -22,7 +22,7 @@ void CubicEquation::solve() {
     // Q, R, S variables values define the way to calculate roots
     double Q = (aQuad - 3 * b) / 9;
     double Qcubic = Q * Q * Q;
-    double minus2sqrtQ = -2 * sqrt(abs(Q));
+    double minus2sqrtQ = -2 * sqrt(std::abs(Q));
     double R = (2 * a * aQuad - 9 * a * b + 27 * c) / 54;
     double S = Qcubic - R * R;
     double sR = sign(R);
@@ -33,7 +33,7 @@ void CubicEquation::solve() {
         double x2 = cbrtR - aDiv3;
         m_roots = {x1, x2};
     } else if (S > 0) {
-        double phi = (1.0 / 3) * acos((abs(R) / (sqrt(abs(Qcubic)))));
+        double phi = (1.0 / 3) * acos((std::abs(R) / (sqrt(std::abs(Qcubic)))));
         double x1 = minus2sqrtQ * cos(phi) - aDiv3;
         double x2 = minus2sqrtQ * cos(phi + PiTwoDivThree) - aDiv3;
         double x3 = minus2sqrtQ * cos(phi - PiTwoDivThree) - aDiv3;
@@ -45,7 +45,7 @@ void CubicEquation::solve() {
             // x2 and x3 are complex, skip them here
             m_roots = {x1};
         } else if (Q < 0) {
-            double phi = 1.0 / 3 * asinh(abs(R) / sqrt(abs(Qcubic)));
+            double phi = 1.0 / 3 * asinh(std::abs(R) / sqrt(std::abs(Qcubic)));
             double x1 = minus2sqrtQ * sR * sinh(phi) - aDiv3;
             // x2 and x3 are complex, skip them here
             m_roots = {x1};
