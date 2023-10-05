@@ -1,6 +1,6 @@
 #include "queq.h"
 
-#include <string>
+#include <cmath>
 
 #include "utils.h"
 

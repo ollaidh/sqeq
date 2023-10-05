@@ -1,4 +1,5 @@
 #include <string>
+#include <vector>
 
 // Convert string_view to int if possible:
 int stringviewToInt(std::string_view strv);

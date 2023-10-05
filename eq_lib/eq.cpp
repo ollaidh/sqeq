@@ -1,3 +1,5 @@
+#include <cassert>
+
 #include "eq.h"
 
 bool Equation::operator==(const Equation &other) const {

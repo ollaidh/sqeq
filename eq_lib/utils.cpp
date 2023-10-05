@@ -3,6 +3,7 @@
 #include <iostream>
 #include <charconv>
 #include <sstream>
+#include <vector>
 
 int stringviewToInt(std::string_view strv) {
     int result;
