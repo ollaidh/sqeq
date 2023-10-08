@@ -9,7 +9,6 @@
 int main(int argc, const char * argv[]) {
     try {
         auto reader = createReader(argc, argv);
-        int i = 0;
         while (!reader->atEnd()) {
             auto currInput = reader->getCoeffs();
             auto coeffs = parseCoeffs(currInput);
@@ -25,7 +24,6 @@ int main(int argc, const char * argv[]) {
             auto roots = eq->getRoots();
             printEq(coeffs, roots, std::cout);
             std::cout << "\n";
-            i++;
         }
     } catch (std::invalid_argument& e) {
         std::cout << e.what();
