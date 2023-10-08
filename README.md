@@ -3,7 +3,7 @@ This tool provides a solution for solving linear, quadratic and cubic equations.
 Each equation is represented as pack of coefficients: 2 for linear,
 3 for quadratic and 4 for cubic.
 
-## Architecture???
+## Workflow
 
 Each equation is solved in following steps described below. As we have 
 a set of equations, all steps are taken sequentially for each equation
