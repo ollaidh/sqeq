@@ -4,7 +4,7 @@
 
 #include "eq.h"
 
-// one linear equation:
+// Realization of Equation interface for linear equation:
 class LinearEquation :public Equation {
 public:
     explicit LinearEquation(const std::vector<int>& coeffs);

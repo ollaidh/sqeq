@@ -4,6 +4,7 @@
 
 #include "utils.h"
 
+
 CubicEquation::CubicEquation(const std::vector<int>& coeffs) {
     m_coeffs = coeffs;
 }
