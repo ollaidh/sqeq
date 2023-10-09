@@ -1,5 +1,5 @@
 # EQUATION SOLVER
-This tool provides a solution for solving linear, quadratic and cubic equations.
+This is a solver for linear, quadratic and cubic equations.
 Each equation is represented as pack of coefficients: 2 for linear,
 3 for quadratic and 4 for cubic.
 
@@ -17,17 +17,32 @@ There is two ways to get coeffs for equations:
 File with coeffs content looks as follows, where each line refers to
 one equation, and type of equation depends on number of coefficients
 in the line:
+
 ```
 1 2 3
 4 5
 6 7 8 9
 ....
 ```
-Command line arguments look as follows, where *L*, *Q* and *C*
+If file does not exist, the error with "Unable to open input stream!
+" message is thrown.
+If there is wrong amount of coefficients in line, a pack is being skipped
+(not solved) and user gets a message *"Wrong amount of coeffs: %number%
+"*
+
+Command line arguments look as follows, where `L`, `Q` and `C`
 mark the type of equation - linear, quadratic and cubic relatively:
+
 ```
 Q 1 2 3 L 4 5 C 6 7 8 9
 ```
+
+If there is incorrect number of coefficients for and equation in the command line argument:
+- If more arguments than needed (like 4 coefficients for quadratic
+equation: `Q 1 2 3 4`) the only necessary number of args is taken, others
+skipped and marked as *Bad coeffs pack ()! Skipping this equation.* message, before we get to
+next equation.
+- If less arguments then needed then user gets *Bad coeffs pack ()! Skipping this equation.* message.
 
 To read coefficients the `Reader` interface is used, that has two realizations:
 depending on how input data is presented (file or command line) `FileReader`
@@ -44,6 +59,8 @@ It does the following:
 as zero coefficient reduces equation to lower-order and we don't need
 to pass it further.
  - Returns vector of int coefficients
+If a coefficients pack for an equation happens to be invalid, back is being skipped
+and user gets a message *"Bad coeffs pack (%pack%)! Skipping this equation."*
 
 ### 3. Creating an equation object:
 Equation is represented by interface `Equation` which has three realizations
@@ -67,9 +84,13 @@ Get roots vector from the equation object, print the result
 (coefficients, roots) of the equation using `printEq` function.
 
 ## Tests
+
 ### Unit tests
+
 Unit tests conducted using GTest library.
+
 ### Integration tests
+
 Integration tests - Python module `test_integration.py`.
 Requires setting environmental variable `EQ_EXECUTABLE` - path to the `eq_app` build
 
@@ -82,6 +103,6 @@ Requires setting environmental variable `EQ_EXECUTABLE` - path to the `eq_app` b
 
 `eq_lib` - main application
 
-`eq-tests` - GTest-based unit tests for eq_lib
+`eq_tests` - GTest-based unit tests for eq_lib
 
 `integration_tests` - python module for integration tests
