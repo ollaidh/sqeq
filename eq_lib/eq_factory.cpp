@@ -17,7 +17,6 @@ std::unique_ptr<Equation> createEquation(const std::vector<int>& coeffs) {
     } else if (coeffsAmount == 4) {
         return std::make_unique<CubicEquation>(coeffs);
     } else {
-        // TODO change into Raise Error:
         std::cout << "Wrong amount of coeffs: " << coeffsAmount << "\n";
         return nullptr;
     }
