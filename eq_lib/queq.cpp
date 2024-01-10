@@ -4,8 +4,10 @@
 
 #include "utils.h"
 
-QuadraticEquation::QuadraticEquation(const std::vector<int>& coeffs) {
-    m_coeffs = coeffs;
+QuadraticEquation::QuadraticEquation(std::vector<int> coeffs)
+    : Equation{std::move(coeffs)}
+{
+
 }
 
 void QuadraticEquation::solve() {

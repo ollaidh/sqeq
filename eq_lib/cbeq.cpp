@@ -5,8 +5,10 @@
 #include "utils.h"
 
 
-CubicEquation::CubicEquation(const std::vector<int>& coeffs) {
-    m_coeffs = coeffs;
+CubicEquation::CubicEquation(std::vector<int> coeffs)
+    : Equation{std::move(coeffs)}
+{
+
 }
 
 void CubicEquation::solve() {

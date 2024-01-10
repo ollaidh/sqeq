@@ -7,19 +7,20 @@
 #include "utils.h"
 
 
-std::unique_ptr<Equation> createEquation(const std::vector<int>& coeffs) {
+std::unique_ptr<Equation> createEquation(std::vector<int> coeffs) {
     std::size_t coeffsAmount = coeffs.size();
 
     if (coeffsAmount == 2) {
-        return std::make_unique<LinearEquation>(coeffs);
-    } else if (coeffsAmount == 3) {
-        return std::make_unique<QuadraticEquation>(coeffs);
-    } else if (coeffsAmount == 4) {
-        return std::make_unique<CubicEquation>(coeffs);
-    } else {
-        std::cout << "Wrong amount of coeffs: " << coeffsAmount << "\n";
-        return nullptr;
+        return std::make_unique<LinearEquation>(std::move(coeffs));
     }
+    if (coeffsAmount == 3) {
+        return std::make_unique<QuadraticEquation>(std::move(coeffs));
+    }
+    if (coeffsAmount == 4) {
+        return std::make_unique<CubicEquation>(std::move(coeffs));
+    }
+    std::cout << "Wrong amount of coeffs: " << coeffsAmount << "\n";
+    return nullptr;
 }
 
 

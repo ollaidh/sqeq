@@ -12,7 +12,7 @@ TEST(factory, basic) {
     std::vector<int> qu_input{1, 2, 3};
     auto qu_result = createEquation(qu_input);
     ASSERT_NE(dynamic_cast<QuadraticEquation*>(qu_result.get()), nullptr);
-    ASSERT_EQ(QuadraticEquation(qu_input), *qu_result);
+    ASSERT_EQ(QuadraticEquation(std::move(qu_input)), *qu_result);
 
     std::vector<int> ln_input{1, 2};
     auto ln_result = createEquation(ln_input);
