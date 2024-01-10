@@ -7,7 +7,7 @@
 #include "utils.h"
 
 
-std::unique_ptr<Equation> createEquation(std::vector<int>&& coeffs) {
+std::unique_ptr<Equation> createEquation(const std::vector<int>& coeffs) {
     std::size_t coeffsAmount = coeffs.size();
 
     if (coeffsAmount == 2) {

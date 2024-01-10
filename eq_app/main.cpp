@@ -19,7 +19,7 @@ int main(int argc, const char * argv[]) {
                 std::cout << "\n";
                 continue;
             }
-            auto eq = createEquation(std::move(coeffs));
+            auto eq = createEquation(coeffs);
             eq->solve();
             auto roots = eq->getRoots();
             printEq(coeffs, roots, std::cout);
