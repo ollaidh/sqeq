@@ -21,8 +21,7 @@ int main(int argc, const char * argv[]) {
             }
             auto eq = createEquation(std::move(coeffs));
             eq->solve();
-            auto roots = eq->getRoots();
-            printEq(coeffs, roots, std::cout);
+            printEq(eq->getCoeffs(), eq->getRoots(), std::cout);
             std::cout << "\n";
         }
     } catch (std::invalid_argument& e) {
