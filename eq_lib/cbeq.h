@@ -4,6 +4,6 @@
 // Realization of Equation interface for cubic equation:
 class CubicEquation :public Equation{
 public:
-    explicit CubicEquation(const std::vector<int>& coeffs);
+    explicit CubicEquation(std::vector<int> coeffs);
     void solve() override;
 };

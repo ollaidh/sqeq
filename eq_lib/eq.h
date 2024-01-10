@@ -6,6 +6,7 @@
 // Base class for all equations
 class Equation {
 public:
+    explicit Equation(std::vector<int> coeffs);
     virtual ~Equation() = default;
     virtual void solve() = 0;
     [[nodiscard]] virtual std::vector<int> getCoeffs() const;

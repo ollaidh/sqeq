@@ -2,6 +2,10 @@
 
 #include "eq.h"
 
+Equation::Equation(std::vector<int> coeffs) : m_coeffs{std::move(coeffs)} {
+
+}
+
 bool Equation::operator==(const Equation &other) const {
     return m_coeffs == other.m_coeffs;
 }

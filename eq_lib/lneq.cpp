@@ -1,7 +1,9 @@
 #include "lneq.h"
 
-LinearEquation::LinearEquation(const std::vector<int>& coeffs) {
-    m_coeffs = coeffs;
+LinearEquation::LinearEquation(std::vector<int> coeffs)
+    : Equation{std::move(coeffs)}
+{
+
 }
 
 void LinearEquation::solve() {
