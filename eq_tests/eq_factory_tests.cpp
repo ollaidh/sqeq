@@ -10,17 +10,17 @@
 // verify that factory creates the right type of equation with right coeffs:
 TEST(factory, basic) {
     std::vector<int> qu_input{1, 2, 3};
-    auto qu_result = createEquation(qu_input);
+    auto qu_result = createEquation(std::move(qu_input));
     ASSERT_NE(dynamic_cast<QuadraticEquation*>(qu_result.get()), nullptr);
     ASSERT_EQ(QuadraticEquation(qu_input), *qu_result);
 
     std::vector<int> ln_input{1, 2};
-    auto ln_result = createEquation(ln_input);
+    auto ln_result = createEquation(std::move(ln_input));
     ASSERT_NE(dynamic_cast<LinearEquation*>(ln_result.get()), nullptr);
     ASSERT_EQ(LinearEquation(ln_input), *ln_result);
 
     std::vector<int> cb_input{1, 2, 3, 4};
-    auto cb_result = createEquation(cb_input);
+    auto cb_result = createEquation(std::move(cb_input));
     ASSERT_NE(dynamic_cast<CubicEquation*>(cb_result.get()), nullptr);
     ASSERT_EQ(CubicEquation(cb_input), *cb_result);
 
